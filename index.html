@@ -1,52 +1,149 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Base Motion NY card</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!--a-frame skripts, ieteicams nelikt uz jaunāko versiju-->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+
+    <!--orbitējošās kameras skripts. Vajag uzstādīt kameru, skatīt id #OrbitKamera. info: https://www.npmjs.com/package/aframe-orbit-controls-->
+    <script src="https://unpkg.com/aframe-orbit-controls@1.3.0/dist/aframe-orbit-controls.min.js"></script>
   </head>
 
   <body>
-    <a-scene loading-screen="enabled: false">
+    <a-scene fog="type: linear; near:1 ; far:1500; color: #2cab9e">
+      <!--baseons un peldetaji-->
+    <a-cylinder
+        id="baseins"
+        position="0 0.5 0"
+        rotation="0 0 0"
+        radius="1"
+        height="1"
+        color="#3287a8"
+        material="shader: standard; opacity: 0.3; transparent: true"
+      >
+        <a-entity
+          obj-model="obj: url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/cilveks.obj?v=1696241439237)"
+          position="0 2 0"
+          scale="-0.9 -0.9 -0.9"
+          shadow="receive: false"
+          material="shader:standard; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/TEXTURE_VIRSs.png?v=1696241449129) "
+          animation="property: rotation; to:0 360 0; loop: true; easing: linear; dur: 4000"
+          animation__2="property: position; to: 0 2 0; loop: true; dir: alternate; easing: easeInOutSine; dur: 2000"
+                 
+        >
+          <a-entity
+            obj-model="obj: url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/cilveks.obj?v=1696241439237)"
+            position="0 4.3 0"
+            scale="-0.9 -0.9 -0.9"
+            material="shader:standard; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/TEXTURE_VIRSs.png?v=1696241449129) "
+          >
+          </a-entity>
+        </a-entity>
+      </a-cylinder>
 
-      <!-- ASSETS (NO VIDEO HERE) -->
-      <a-assets>
-        <a-asset-item id="myModel" src="AINAVA13.glb"></a-asset-item>
-      </a-assets>
-
-      <!-- VIDEO ELEMENT (hidden, loaded later) -->
-     
-      <!-- MODEL -->
+      <!--puku plaknes-->
       <a-entity
-        gltf-model="#myModel"
-        position="0 0 0"
-        rotation="0 90 0"
-        scale="1 1 1">
+        obj-model="obj: url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/plakne_new.obj?v=1696244003043)"
+        position="0 2 0"
+        rotation="0 60 0"
+        scale="1.5 -1.5"
+        material="shader:standard; alphaTest: 0.99; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/algu_textur.png?v=1696241453868) "
+        animation="property: position; to: 0 2.2 0; loop: true; dir: alternate; easing: easeOutSine; dur: 4900"
+        animation__2="property: rotation; to:0 420 0; loop: true; easing: linear; dur: 35500"
+        
+      >
       </a-entity>
-
-      <!-- CAMERA -->
       <a-entity
+        obj-model="obj: url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/plakne_new.obj?v=1696244003043)"
+        position="0 2 0"
+        rotation="0 30 0"
+        scale="1.8 1.8"
+        material="shader:standard; alphaTest: 0.99; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/algu_textur.png?v=1696241453868) "
+        animation="property: position; to: 0 1.9 0; loop: true; dir: alternate; easing: easeOutSine; dur: 1500"
+        animation__2="property: rotation; to:0 390 0; loop: true; easing: linear; dur: 45500"
+      >
+      </a-entity>
+      <a-entity
+        obj-model="obj: url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/plakne_new.obj?v=1696244003043)"
+        position="0 2 0"
+        rotation="0 90 0"
+        scale="2 2"
+        material="shader:standard; alphaTest: 1; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/algu_textur.png?v=1696241453868) "
+        animation="property: rotation; to:0 450 0; loop: true; easing: linear; dur: 25500"
+      >
+      </a-entity>
+     <a-entity
+        obj-model="obj: url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/plakne_new.obj?v=1696244003043)"
+        position="0 2 0"
+        rotation="0 0 0"
+        scale="1.5 -1.5"
+        material="shader:standard; alphaTest: 1; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/algu_textur.png?v=1696241453868) "
+        animation="property: rotation; to:0 360 0; loop: true; easing: linear; dur: 15500"
+      >
+      </a-entity> 
+      
+        <!--baseina detalas-->
+    <a-cylinder
+        id="baseins2"
+        position="0 0.5 0"
+        rotation="0 0 0"
+        radius="1.1"
+        height="1.1"
+        color="#3287a8"
+        material="shader: standard; opacity: 0.5; transparent: true"
+                  
+      ></a-cylinder>
+       <a-cylinder
+        id="pamats basins"
+        position="0 -0.06 0"
+        rotation="0 0 0"
+        radius="1.1"
+        height="0.01"
+        color="#b0cdd4"
+    material="shader"
+        
+        shadow="cast:false"
+                  
+      ></a-cylinder>
+<a-cylinder
+        id="pamats basins textura"
+        position="0 -0.05 0"
+        rotation="0 0 0"
+        radius="1.1"
+        height="0.005"
+        color="#b0cdd4"
+        material="shader:standard; alphaTest: 0.999; src:url(https://cdn.glitch.global/1d88a4d1-e66b-490c-b708-ae8d81b80496/algu_textur.png?v=1696241453868) "
+        
+        shadow="cast:false"
+                  
+      ></a-cylinder>
+
+      
+      <!--Fons-->
+      <a-sky color="white"></a-sky>
+
+      <!--Orbitējošā Kamera no komponentes-->
+      <a-entity
+        id="OrbitKamera"
         camera
         look-controls
-        position="-0.8 3 0.9"
-        rotation="17.3 88.7 -3.5"
-        fov="50">
-      </a-entity>
+        orbit-controls="target: 0 1.6 -0.5; minDistance: 2; maxDistance: 180; initialPosition: 0 3 8"
+      ></a-entity>
 
-      <!-- LIGHTS -->
-      <a-light type="ambient" intensity="0.12" color="#74A7FE"></a-light>
+      <!--gaismas-->
+     <a-entity light="type: directional; intensity: 0.5; castShadow: true; distance: 50; decay: 1.8"
+          position="0.047 4.450 -0.070"
+          
+               ></a-entity>
 
-      <a-light
-        type="directional"
-        intensity="0.1"
-        position="-10 9 -0.5"
-        color="#001E57">
-      </a-light>
+      <a-entity light="type: spot; intensity: 1.5;  color: #BBB"
+                position="0 0 0"
+                rotation= "0 20 0"
+                animation="property: rotation; to:0 -360 0; loop: true; easing: linear; dur: 35500"
+                ></a-entity>
 
-   
-
+      <a-entity
+        light="type: ambient; intensity: 0.4; distance: 18.01; decay: 2; color: #ffffff; groundColor: #000000; "
+        
+      ></a-entity>
     </a-scene>
-
-
   </body>
 </html>
