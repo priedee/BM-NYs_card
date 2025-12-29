@@ -1,38 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title>3D Model Viewer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- A-Frame -->
+    <meta charset="utf-8">
+    <title>Base Motion NY card</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-
-    <style>
-      body { margin: 0; overflow: hidden; }
-    </style>
   </head>
 
   <body>
-    <a-scene>
+    <a-scene loading-screen="enabled: false">
 
-      <!-- Load your Blender-exported GLB -->
+      <!-- ASSETS (NO VIDEO HERE) -->
+      <a-assets>
+        <a-asset-item id="myModel" src="AINAVA13.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- VIDEO ELEMENT (hidden, loaded later) -->
+      <video
+        id="video360"
+        src="bckgrnd.mp4"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        style="display:none">
+      </video>
+
+      <!-- VIDEOSPHERE (hidden initially) -->
+      <a-videosphere
+        id="videoSphere"
+        visible="false"
+        rotation="0 0 -10">
+      </a-videosphere>
+
+      <!-- MODEL -->
       <a-entity
-        gltf-model="url(testix.glb)"
+        gltf-model="#myModel"
         position="0 0 0"
+        rotation="0 90 0"
         scale="1 1 1">
       </a-entity>
 
-      <!-- Camera -->
-      <a-entity 
-        camera 
-        position="0 1.6 3" 
-        look-controls>
+      <!-- CAMERA -->
+      <a-entity
+        camera
+        look-controls
+        position="-0.8 3 0.9"
+        rotation="17.3 88.7 -3.5"
+        fov="50">
       </a-entity>
 
-      <!-- Basic light -->
-      <a-light type="ambient" color="#ffffff"></a-light>
+      <!-- LIGHTS -->
+      <a-light type="ambient" intensity="0.12" color="#74A7FE"></a-light>
+
+      <a-light
+        type="directional"
+        intensity="0.1"
+        position="-10 9 -0.5"
+        color="#001E57">
+      </a-light>
+
+      <a-light type="spot" intensity="1.5" position="-17.5 -16.5 10.5"
+        rotation="90 180 0" penumbra="1" angle="30" color="#FFAA00"></a-light>
+
+      <a-light type="spot" intensity="1.33" position="-16.98 -12.1 -6.5"
+        rotation="90 180 0" penumbra="1" angle="26.2" color="#ffaa00"></a-light>
+
+      <a-light type="spot" intensity="0.85" position="3 -12.1 22.4"
+        rotation="90 180 0" penumbra="1" angle="20.2" color="#ffb43f"></a-light>
+
+      <a-light type="spot" intensity="1.5" position="-5.3 -14.5 -18.2"
+        rotation="90 180 0" penumbra="1" angle="22" color="#FFAA00"></a-light>
+
+      <a-light type="spot" intensity="1" position="4.9 -12.1 12.4"
+        rotation="77 -176 105" penumbra="1" angle="20.6" color="#ffb43f"></a-light>
+
+      <a-light type="spot" intensity="1.2" position="9.1 -14.1 -8.13"
+        rotation="90 180 0" penumbra="1" angle="20.6" color="#FEB43F"></a-light>
+
+      <a-light type="spot" intensity="1.2" position="20.4 -5.4 6.45"
+        rotation="90 180 0" penumbra="1" angle="40" color="#FEB43F"></a-light>
 
     </a-scene>
+
+    <!-- VIDEO START LOGIC (iOS SAFE) -->
+    <script>
+      const video = document.querySelector('#video360');
+      const sphere = document.querySelector('#videoSphere');
+
+      function startVideo() {
+        video.play().then(() => {
+          sphere.setAttribute('src', '#video360');
+          sphere.setAttribute('visible', true);
+        }).catch(() => {
+          console.log('Video play blocked');
+        });
+      }
+
+      document.addEventListener('touchstart', startVideo, { once: true });
+      document.addEventListener('click', startVideo, { once: true });
+    </script>
+
   </body>
 </html>
