@@ -15,23 +15,7 @@
       </a-assets>
 
       <!-- VIDEO ELEMENT (hidden, loaded later) -->
-      <video
-        id="video360"
-        src="bckgrnd.mp4"
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        style="display:none">
-      </video>
-
-      <!-- VIDEOSPHERE (hidden initially) -->
-      <a-videosphere
-        id="videoSphere"
-        visible="false"
-        rotation="0 0 -10">
-      </a-videosphere>
-
+     
       <!-- MODEL -->
       <a-entity
         gltf-model="#myModel"
@@ -63,23 +47,6 @@
 
     </a-scene>
 
-    <!-- VIDEO START LOGIC (iOS SAFE) -->
-    <script>
-      const video = document.querySelector('#video360');
-      const sphere = document.querySelector('#videoSphere');
-
-      function startVideo() {
-        video.play().then(() => {
-          sphere.setAttribute('src', '#video360');
-          sphere.setAttribute('visible', true);
-        }).catch(() => {
-          console.log('Video play blocked');
-        });
-      }
-
-      document.addEventListener('touchstart', startVideo, { once: true });
-      document.addEventListener('click', startVideo, { once: true });
-    </script>
 
   </body>
 </html>
